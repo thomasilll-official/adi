@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SaieTrix Solution Pvt. Ltd. - Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"/>
+
+  <style>
+    /* ---------------- Global ---------------- */
+    html,body{height:100%;margin:0;font-family:Times New Roman,serif;background:none;color:#111;}
+    .navbar{background:#001f3f;}
+    .navbar-brand{font-weight:700;color:#fff!important}
+
+    /* ---------- HERO: enlarged, vertically centered ---------- */
+    .hero { background: linear-gradient(135deg, #001f3f, #003366); color: white; padding: 100px 0; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .btn-primary { background-color: #ffd700; border: none; transition: transform 0.3s; color: #001f3f; }
+        .btn-primary:hover { transform: scale(1.05); }
+
+    .section{padding:18px 0}
+
+    /* ---------- SINGLE CONTAINER (min-height; page can grow) ---------- */
+    .single-block {
+      width:100%;
+      height:auto;
+      min-height:100vh;
+      margin:0 auto;
+      padding:22px;
+      border-radius:0;
+      background: linear-gradient(135deg, #e2ffff, #fff7f7, #e9fffb);
+      box-shadow:none;
+      border:0;
+      overflow:visible;
+      color:#071827;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      justify-content:flex-start;
+    }
+
+    .block-header { text-align:center; color:#001f3f; font-weight:800; font-size:28px; margin-bottom:6px; }
+
+    /* ---------- Panels: translucent layers for legibility ---------- */
+    .about-area {
+      padding:10px 8px 12px 8px;
+      border-radius:10px;
+      background: rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .about-area h2{font-size:18px; margin-bottom:8px; color:#042a3a;}
+    .about-area p{margin:0 0 8px 0; line-height:1.6; color:#041a26}
+    .about-features { margin:6px 0 0 18px; color:#042a3a; }
+
+    /* ---------- Services area ---------- */
+    #services { margin-top:6px; overflow:visible; }
+    #services .section-title { font-size:20px; color:#042a3a; font-weight:800; margin-bottom:10px; text-align:left; }
+
+    .service-list { display:flex; flex-direction:column; gap:14px; }
+
+    .service-item {
+      display:flex; align-items:center; gap:18px;
+      padding:16px; border-radius:12px; background: rgba(255,255,255,0.06);
+      border:1px solid rgba(0,102,153,0.06);
+      box-shadow: 0 10px 30px rgba(14,122,255,0.06);
+      transition:transform .28s, box-shadow .28s;
+      flex-wrap:wrap;
+    }
+    .service-item:hover{ transform:translateY(-4px); box-shadow: 0 18px 40px rgba(14,122,255,0.10); }
+    .service-item.reverse{flex-direction:row-reverse;}
+
+    /* IMAGE sizes and style */
+    .service-image{flex:0 0 200px; width:200px; height:200px; border-radius:12px; overflow:hidden; background:#ffffff22; display:inline-block; box-shadow:0 6px 18px rgba(3,64,120,0.06); border:1px solid rgba(0,102,153,0.06)}
+    .service-image img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
+    .service-text{flex:1 1 calc(100% - 240px); min-width:220px}
+    .service-title{font-size:20px;font-weight:800;margin:0 0 8px 0;color:#021826}
+    .service-desc{margin:0 0 8px 0;line-height:1.6;color:#071827;font-size:15px}
+    .service-points { margin:6px 0 0 18px; color:#072f3f; font-size:14px; }
+
+    /* Force text alignment based on .reverse class */
+    .service-item .service-text { text-align:left; }
+    .service-item.reverse .service-text { text-align:right; }
+
+    /* ---------- Image slide animations (left/right) ---------- */
+    @keyframes slideLeft { from{opacity:0; transform:translateX(-50px);} to{opacity:1; transform:translateX(0);} }
+    @keyframes slideRight{ from{opacity:0; transform:translateX(50px);} to{opacity:1; transform:translateX(0);} }
+    .img-left{animation:slideLeft 1s ease both}
+    .img-right{animation:slideRight 1s ease both}
+
+    /* ---------- Clients slider (wider & larger images) ---------- */
+    .clients-area { margin-top:8px; padding-top:8px; border-top:1px dashed rgba(3,18,26,0.04); }
+    .client-slider-wrap { margin:10px auto 0; display:flex; align-items:center; justify-content:center; }
+    .client-slider { position:relative; width:86%; max-width:1100px; height:240px; overflow:hidden; }
+    .client-slide { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(.99); transition:opacity .35s, transform .35s; }
+    .client-slide img { width:88%; max-height:220px; object-fit:contain; display:block; border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,0.12); background:rgba(255,255,255,0.94); padding:10px; }
+
+    @keyframes clientFade {
+      0%   { opacity:0; transform:scale(.99); }
+      6%   { opacity:1; transform:scale(1); }
+      28%  { opacity:1; transform:scale(1); }
+      34%  { opacity:0; transform:scale(.99); }
+      100% { opacity:0; transform:scale(.99); }
+    }
+    .client-slide { animation: clientFade 12s linear infinite; }
+    .client-slide:nth-child(1){ animation-delay: 0s; }
+    .client-slide:nth-child(2){ animation-delay: 1.5s; }
+    .client-slide:nth-child(3){ animation-delay: 3s; }
+    .client-slide:nth-child(4){ animation-delay: 4.5s; }
+    .client-slide:nth-child(5){ animation-delay: 6s; }
+    .client-slide:nth-child(6){ animation-delay: 7.5s; }
+    .client-slide:nth-child(7){ animation-delay: 9s; }
+    .client-slide:nth-child(8){ animation-delay: 10.5s; }
+
+    .subtle-note { font-size:13px; color:#021826; margin-top:8px; text-align:center; }
+
+    /* ---------- Footer spacing ---------- */
+    footer { padding:12px 0; }
+
+    /* ---------- Responsive adjustments ---------- */
+    @media (max-width:1100px){
+      .client-slider{height:200px}
+      .service-image{width:170px;height:170px;flex:0 0 170px}
+      .service-title{font-size:18px}
+      .hero{min-height:62vh}
+    }
+    @media (max-width:720px){
+      .hero{min-height:50vh;padding:28px 12px}
+      .hero h1{font-size:clamp(1.3rem,7vw,2.2rem)}
+      .hero p{font-size:0.95rem}
+      .single-block{padding:12px}
+      .service-item, .service-item.reverse{flex-direction:column;align-items:flex-start}
+      .service-image{width:100%;height:160px;flex:0 0 auto}
+      .service-text{min-width:0;flex:1 1 100%;text-align:left!important}
+      .client-slider{width:96%;height:150px}
+      .client-slide img{max-height:130px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-cpu"></i> SaieTrix Solution Pvt. Ltd.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+   <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Empowering Businesses with Reliable IT Solutions</h1>
+            <p>Your trusted partner for IT services, hardware support, and maintenance across India.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get Support</a>
+        </div>
+    </section>
+
+  <!-- ---------- SINGLE BLOCK: grows with content, page scrolls ---------- -->
+  <div class="single-block" role="region" aria-label="Company information: About, Services and Clients">
+
+    <!-- About Us -->
+    <div class="about-area" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Us</h2>
+      <p>
+        SaieTrix Solution Pvt. Ltd. delivers end-to-end IT services across hardware, networking, security and maintenance.
+        We focus on practical, fast-to-deploy solutions with transparent pricing and reliable support.
+      </p>
+      <ul class="about-features">
+        <li>Trusted partnerships with HP, Dell, Lenovo, Cisco, Ubiquiti, Hikvision.</li>
+        <li>On-site and remote support options with SLAs for business continuity.</li>
+        <li>Preventive maintenance & scheduled health checks for longer asset life.</li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <section id="services" aria-labelledby="services-heading" style="flex:1 1 auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <h3 id="services-heading" class="section-title">Our Services</h3>
+        <div style="font-size:13px;color:#042a3a;font-weight:700">Comprehensive • Reliable • Local Support</div>
+      </div>
+
+      <div class="service-list" role="list">
+
+        <!-- 1. Computer / Laptop Maintenance (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc1-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/J0M9w4g3/maintainense.jpg" alt="Computer / Laptop Maintenance">
+          </div>
+          <div class="service-text" id="svc1-title">
+            <h4 class="service-title">Computer / Laptop Maintenance</h4>
+            <p class="service-desc">
+              Rapid diagnostics and repair for desktops and laptops — hardware troubleshooting, OS repair, driver updates and performance tuning.
+              We restore systems while preserving data integrity and provide recommendations to avoid repeated failures.
+            </p>
+            <ul class="service-points">
+              <li>Full hardware health-check (storage, memory, cooling) and component replacement quotes.</li>
+              <li>OS cleanup, driver rollbacks, and secure virus/malware removal with follow-up checks.</li>
+              <li>Advice on upgrades to extend lifecycle and improve performance (SSD, RAM, thermal paste).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Server Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc2-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Server Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc2-title">
+            <h4 class="service-title">Server Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Design, deploy and maintain physical and virtual server environments. We handle OS installation, RAID configuration, monitoring and backup integration.
+              Focus is on uptime, security patches and predictable maintenance windows for minimal disruption.
+            </p>
+            <ul class="service-points">
+              <li>Virtualization setup (VMWare, Hyper-V) and container guidance for efficient utilization.</li>
+              <li>Patch management, monitoring dashboards and automated alerting to prevent outages.</li>
+              <li>Backup strategy (onsite/offsite) including restore drills and RTO/RPO recommendations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Printer Servicing & Repair (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc3-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/6pqQ5m3C/printer-service.jpg" alt="Printer Servicing & Repair">
+          </div>
+          <div class="service-text" id="svc3-title">
+            <h4 class="service-title">Printer Servicing &amp; Repair</h4>
+            <p class="service-desc">
+              On-site servicing for inkjet and laser printers: jam resolution, print-head cleaning, alignment and mechanical repairs.
+              We also support multi-function devices and print-server integration for office environments.
+            </p>
+            <ul class="service-points">
+              <li>Consumables supply, scheduled preventive servicing and replacement planning.</li>
+              <li>Network printer setup, shared printing and access control for departments.</li>
+              <li>Service contracts with priority response for high-dependency printers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. CCTV Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc4-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/NjWZx4g4/cctv.jpg" alt="CCTV Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc4-title">
+            <h4 class="service-title">CCTV Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Professional camera placement, wiring, NVR/DVR setup and remote-view configuration. We design systems for clear coverage and reliable recording.
+              Our team ensures secure remote access and proper retention policies aligned with your needs.
+            </p>
+            <ul class="service-points">
+              <li>Site survey, camera selection (PoE/IP/analog) and optimal placement for maximum visibility.</li>
+              <li>Network configuration, secure remote access and cloud backup options.</li>
+              <li>Regular firmware updates, health checks and storage management to avoid data loss.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Network Installation / LAN Setup (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc5-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Network Installation / LAN Setup">
+          </div>
+          <div class="service-text" id="svc5-title">
+            <h4 class="service-title">Network Installation / LAN Setup</h4>
+            <p class="service-desc">
+              End-to-end LAN/WAN deployment: structured cabling, switch/router configuration, firewall basics and Wi-Fi planning for robust connectivity.
+              We prioritize stable speeds, segmented networks and secure access for users and IoT devices.
+            </p>
+            <ul class="service-points">
+              <li>Site survey with Wi-Fi heatmap, AP placement and bandwidth planning.</li>
+              <li>VLAN design, QoS configuration and firewall rules for segmented secure networks.</li>
+              <li>Documentation handover and basic training for in-house IT teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Attendance Machine Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc6-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/jdB8VSGD/biomatric.jpg" alt="Attendance Machine Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc6-title">
+            <h4 class="service-title">Attendance Machine Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Biometric and RFID device installation with seamless integration to payroll and HR software. We handle device calibration, network setup and data sync routines.
+              Training and documentation are provided for smooth daily operation.
+            </p>
+            <ul class="service-points">
+              <li>Device selection guidance (fingerprint, facial, RFID) based on scale and environment.</li>
+              <li>Integration with existing payroll systems and periodic synchronization checks.</li>
+              <li>On-site calibration, firmware updates and data export support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 7. Data Recovery Services (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc7-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/kgxvkFQN/datarecivery.jpg" alt="Data Recovery Services">
+          </div>
+          <div class="service-text" id="svc7-title">
+            <h4 class="service-title">Data Recovery Services</h4>
+            <p class="service-desc">
+              Fast, careful recovery for logical failures and basic physical issues on HDDs, SSDs, USB drives and memory cards.
+              We diagnose, provide a clear estimate and attempt safe recovery pathways before recommending advanced lab-based recovery where needed.
+            </p>
+            <ul class="service-points">
+              <li>Free initial diagnostics and transparent success-probability estimates.</li>
+              <li>Safe cloning, logical recovery and secure transfer of recovered data.</li>
+              <li>Emergency escalation options for business-critical data recovery.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 8. Monitor / SMPS Repairing (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc8-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/nzw4vdxx/smpsrepair.jpg" alt="Monitor / SMPS Repairing">
+          </div>
+          <div class="service-text" id="svc8-title">
+            <h4 class="service-title">Monitor / SMPS Repairing</h4>
+            <p class="service-desc">
+              Repairs for monitor display issues and SMPS faults — safety-first component-level repairs, voltage checks and thermal assessments.
+              We advise on repair vs replacement based on cost, safety and expected lifetime.
+            </p>
+            <ul class="service-points">
+              <li>Component-level diagnostics, capacitor/transformer checks and safe repairs.</li>
+              <li>Replacement quotes with OEM/compatible parts and warranty on repair work.</li>
+              <li>Post-repair testing and safety certification before return to service.</li>
+            </ul>
+          </div>
+        </div>
+
+<!-- 1. Computer / Laptop Maintenance (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc1-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/J0M9w4g3/maintainense.jpg" alt="Computer / Laptop Maintenance">
+          </div>
+          <div class="service-text" id="svc1-title">
+            <h4 class="service-title">Computer / Laptop Maintenance</h4>
+            <p class="service-desc">
+              Rapid diagnostics and repair for desktops and laptops — hardware troubleshooting, OS repair, driver updates and performance tuning.
+              We restore systems while preserving data integrity and provide recommendations to avoid repeated failures.
+            </p>
+            <ul class="service-points">
+              <li>Full hardware health-check (storage, memory, cooling) and component replacement quotes.</li>
+              <li>OS cleanup, driver rollbacks, and secure virus/malware removal with follow-up checks.</li>
+              <li>Advice on upgrades to extend lifecycle and improve performance (SSD, RAM, thermal paste).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Server Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc2-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Server Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc2-title">
+            <h4 class="service-title">Server Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Design, deploy and maintain physical and virtual server environments. We handle OS installation, RAID configuration, monitoring and backup integration.
+              Focus is on uptime, security patches and predictable maintenance windows for minimal disruption.
+            </p>
+            <ul class="service-points">
+              <li>Virtualization setup (VMWare, Hyper-V) and container guidance for efficient utilization.</li>
+              <li>Patch management, monitoring dashboards and automated alerting to prevent outages.</li>
+              <li>Backup strategy (onsite/offsite) including restore drills and RTO/RPO recommendations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Printer Servicing & Repair (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc3-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/6pqQ5m3C/printer-service.jpg" alt="Printer Servicing & Repair">
+          </div>
+          <div class="service-text" id="svc3-title">
+            <h4 class="service-title">Printer Servicing &amp; Repair</h4>
+            <p class="service-desc">
+              On-site servicing for inkjet and laser printers: jam resolution, print-head cleaning, alignment and mechanical repairs.
+              We also support multi-function devices and print-server integration for office environments.
+            </p>
+            <ul class="service-points">
+              <li>Consumables supply, scheduled preventive servicing and replacement planning.</li>
+              <li>Network printer setup, shared printing and access control for departments.</li>
+              <li>Service contracts with priority response for high-dependency printers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. CCTV Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc4-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/NjWZx4g4/cctv.jpg" alt="CCTV Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc4-title">
+            <h4 class="service-title">CCTV Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Professional camera placement, wiring, NVR/DVR setup and remote-view configuration. We design systems for clear coverage and reliable recording.
+              Our team ensures secure remote access and proper retention policies aligned with your needs.
+            </p>
+            <ul class="service-points">
+              <li>Site survey, camera selection (PoE/IP/analog) and optimal placement for maximum visibility.</li>
+              <li>Network configuration, secure remote access and cloud backup options.</li>
+              <li>Regular firmware updates, health checks and storage management to avoid data loss.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Network Installation / LAN Setup (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc5-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Network Installation / LAN Setup">
+          </div>
+          <div class="service-text" id="svc5-title">
+            <h4 class="service-title">Network Installation / LAN Setup</h4>
+            <p class="service-desc">
+              End-to-end LAN/WAN deployment: structured cabling, switch/router configuration, firewall basics and Wi-Fi planning for robust connectivity.
+              We prioritize stable speeds, segmented networks and secure access for users and IoT devices.
+            </p>
+            <ul class="service-points">
+              <li>Site survey with Wi-Fi heatmap, AP placement and bandwidth planning.</li>
+              <li>VLAN design, QoS configuration and firewall rules for segmented secure networks.</li>
+              <li>Documentation handover and basic training for in-house IT teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Attendance Machine Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc6-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/jdB8VSGD/biomatric.jpg" alt="Attendance Machine Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc6-title">
+            <h4 class="service-title">Attendance Machine Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Biometric and RFID device installation with seamless integration to payroll and HR software. We handle device calibration, network setup and data sync routines.
+              Training and documentation are provided for smooth daily operation.
+            </p>
+            <ul class="service-points">
+              <li>Device selection guidance (fingerprint, facial, RFID) based on scale and environment.</li>
+              <li>Integration with existing payroll systems and periodic synchronization checks.</li>
+              <li>On-site calibration, firmware updates and data export support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 7. Data Recovery Services (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc7-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/kgxvkFQN/datarecivery.jpg" alt="Data Recovery Services">
+          </div>
+          <div class="service-text" id="svc7-title">
+            <h4 class="service-title">Data Recovery Services</h4>
+            <p class="service-desc">
+              Fast, careful recovery for logical failures and basic physical issues on HDDs, SSDs, USB drives and memory cards.
+              We diagnose, provide a clear estimate and attempt safe recovery pathways before recommending advanced lab-based recovery where needed.
+            </p>
+            <ul class="service-points">
+              <li>Free initial diagnostics and transparent success-probability estimates.</li>
+              <li>Safe cloning, logical recovery and secure transfer of recovered data.</li>
+              <li>Emergency escalation options for business-critical data recovery.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 8. Monitor / SMPS Repairing (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc8-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/nzw4vdxx/smpsrepair.jpg" alt="Monitor / SMPS Repairing">
+          </div>
+          <div class="service-text" id="svc8-title">
+            <h4 class="service-title">Monitor / SMPS Repairing</h4>
+            <p class="service-desc">
+              Repairs for monitor display issues and SMPS faults — safety-first component-level repairs, voltage checks and thermal assessments.
+              We advise on repair vs replacement based on cost, safety and expected lifetime.
+            </p>
+            <ul class="service-points">
+              <li>Component-level diagnostics, capacitor/transformer checks and safe repairs.</li>
+              <li>Replacement quotes with OEM/compatible parts and warranty on repair work.</li>
+              <li>Post-repair testing and safety certification before return to service.</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- 1. Computer / Laptop Maintenance (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc1-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/J0M9w4g3/maintainense.jpg" alt="Computer / Laptop Maintenance">
+          </div>
+          <div class="service-text" id="svc1-title">
+            <h4 class="service-title">Computer / Laptop Maintenance</h4>
+            <p class="service-desc">
+              Rapid diagnostics and repair for desktops and laptops — hardware troubleshooting, OS repair, driver updates and performance tuning.
+              We restore systems while preserving data integrity and provide recommendations to avoid repeated failures.
+            </p>
+            <ul class="service-points">
+              <li>Full hardware health-check (storage, memory, cooling) and component replacement quotes.</li>
+              <li>OS cleanup, driver rollbacks, and secure virus/malware removal with follow-up checks.</li>
+              <li>Advice on upgrades to extend lifecycle and improve performance (SSD, RAM, thermal paste).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Server Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc2-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Server Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc2-title">
+            <h4 class="service-title">Server Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Design, deploy and maintain physical and virtual server environments. We handle OS installation, RAID configuration, monitoring and backup integration.
+              Focus is on uptime, security patches and predictable maintenance windows for minimal disruption.
+            </p>
+            <ul class="service-points">
+              <li>Virtualization setup (VMWare, Hyper-V) and container guidance for efficient utilization.</li>
+              <li>Patch management, monitoring dashboards and automated alerting to prevent outages.</li>
+              <li>Backup strategy (onsite/offsite) including restore drills and RTO/RPO recommendations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Printer Servicing & Repair (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc3-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/6pqQ5m3C/printer-service.jpg" alt="Printer Servicing & Repair">
+          </div>
+          <div class="service-text" id="svc3-title">
+            <h4 class="service-title">Printer Servicing &amp; Repair</h4>
+            <p class="service-desc">
+              On-site servicing for inkjet and laser printers: jam resolution, print-head cleaning, alignment and mechanical repairs.
+              We also support multi-function devices and print-server integration for office environments.
+            </p>
+            <ul class="service-points">
+              <li>Consumables supply, scheduled preventive servicing and replacement planning.</li>
+              <li>Network printer setup, shared printing and access control for departments.</li>
+              <li>Service contracts with priority response for high-dependency printers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. CCTV Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc4-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/NjWZx4g4/cctv.jpg" alt="CCTV Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc4-title">
+            <h4 class="service-title">CCTV Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Professional camera placement, wiring, NVR/DVR setup and remote-view configuration. We design systems for clear coverage and reliable recording.
+              Our team ensures secure remote access and proper retention policies aligned with your needs.
+            </p>
+            <ul class="service-points">
+              <li>Site survey, camera selection (PoE/IP/analog) and optimal placement for maximum visibility.</li>
+              <li>Network configuration, secure remote access and cloud backup options.</li>
+              <li>Regular firmware updates, health checks and storage management to avoid data loss.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Network Installation / LAN Setup (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc5-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Network Installation / LAN Setup">
+          </div>
+          <div class="service-text" id="svc5-title">
+            <h4 class="service-title">Network Installation / LAN Setup</h4>
+            <p class="service-desc">
+              End-to-end LAN/WAN deployment: structured cabling, switch/router configuration, firewall basics and Wi-Fi planning for robust connectivity.
+              We prioritize stable speeds, segmented networks and secure access for users and IoT devices.
+            </p>
+            <ul class="service-points">
+              <li>Site survey with Wi-Fi heatmap, AP placement and bandwidth planning.</li>
+              <li>VLAN design, QoS configuration and firewall rules for segmented secure networks.</li>
+              <li>Documentation handover and basic training for in-house IT teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Attendance Machine Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc6-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/jdB8VSGD/biomatric.jpg" alt="Attendance Machine Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc6-title">
+            <h4 class="service-title">Attendance Machine Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Biometric and RFID device installation with seamless integration to payroll and HR software. We handle device calibration, network setup and data sync routines.
+              Training and documentation are provided for smooth daily operation.
+            </p>
+            <ul class="service-points">
+              <li>Device selection guidance (fingerprint, facial, RFID) based on scale and environment.</li>
+              <li>Integration with existing payroll systems and periodic synchronization checks.</li>
+              <li>On-site calibration, firmware updates and data export support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 7. Data Recovery Services (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc7-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/kgxvkFQN/datarecivery.jpg" alt="Data Recovery Services">
+          </div>
+          <div class="service-text" id="svc7-title">
+            <h4 class="service-title">Data Recovery Services</h4>
+            <p class="service-desc">
+              Fast, careful recovery for logical failures and basic physical issues on HDDs, SSDs, USB drives and memory cards.
+              We diagnose, provide a clear estimate and attempt safe recovery pathways before recommending advanced lab-based recovery where needed.
+            </p>
+            <ul class="service-points">
+              <li>Free initial diagnostics and transparent success-probability estimates.</li>
+              <li>Safe cloning, logical recovery and secure transfer of recovered data.</li>
+              <li>Emergency escalation options for business-critical data recovery.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 8. Monitor / SMPS Repairing (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc8-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/nzw4vdxx/smpsrepair.jpg" alt="Monitor / SMPS Repairing">
+          </div>
+          <div class="service-text" id="svc8-title">
+            <h4 class="service-title">Monitor / SMPS Repairing</h4>
+            <p class="service-desc">
+              Repairs for monitor display issues and SMPS faults — safety-first component-level repairs, voltage checks and thermal assessments.
+              We advise on repair vs replacement based on cost, safety and expected lifetime.
+            </p>
+            <ul class="service-points">
+              <li>Component-level diagnostics, capacitor/transformer checks and safe repairs.</li>
+              <li>Replacement quotes with OEM/compatible parts and warranty on repair work.</li>
+              <li>Post-repair testing and safety certification before return to service.</li>
+            </ul>
+          </div>
+        </div>
+
+
+
+      </div>
+    </section>
+
+    <!-- Clients area -->
+    <div class="clients-area" aria-labelledby="clients-heading">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <h3 id="clients-heading" style="font-size:20px;color:#042a3a;margin:6px 0">Our Clients</h3>
+        <div style="font-size:12px;color:#18405a;font-weight:700">Trusted Organisations (rotating)</div>
+      </div>
+
+      <div class="client-slider-wrap">
+        <div class="client-slider" role="region" aria-label="Client logos slider">
+          <!-- Replace the src with real logos. Keep consistent aspect ratio for best result. -->
+          <div class="client-slide"><img src="https://i.postimg.cc/nzw4vdxx/smpsrepair.jpg" alt="Client 1 - TCS"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/kgxvkFQN/datarecivery.jpg" alt="Client 2 - Accenture"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/jdB8VSGD/biomatric.jpg" alt="Client 3 - Wipro"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Client 4 - Tech Mahindra"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/NjWZx4g4/cctv.jpg" alt="Client 5 - HCL"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Client 6 - Infosys"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/kgxvkFQN/datarecivery.jpg" alt="Client 7 - IBM"></div>
+          <div class="client-slide"><img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Client 8 - Dell"></div>
+        </div>
+      </div>
+
+      <div class="subtle-note">Tip: replace placeholders with real company logos (similar aspect ratio). To speed up rotation change <code>12s</code> in the CSS animation to a lower number.</div>
+    </div>
+
+  </div> <!-- end single-block -->
+
+  <!-- Footer -->
+  <footer style="background:#001f3f;color:#fff;padding:12px 0;margin:0;">
+    <div class="container text-center">
+      <p style="margin:4px 0;font-size:14px">&copy; 2023 SaieTrix Solution Pvt. Ltd. All rights reserved.</p>
+      <p style="margin:4px 0;font-size:13px">
+        Services:
+        <a href="services.html" style="color:#fff;text-decoration:none;margin:0 6px">Computer Repair</a> |
+        <a href="services.html" style="color:#fff;text-decoration:none;margin:0 6px">Network Setup</a> |
+        <a href="services.html" style="color:#fff;text-decoration:none;margin:0 6px">CCTV Installation</a>
+      </p>
+      <p style="margin:4px 0;font-size:13px">Contact: info@saietrix.com | +91-1234567890</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

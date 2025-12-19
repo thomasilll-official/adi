@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* IMAGE sizes and style */
+    .service-image{flex:0 0 200px; width:200px; height:200px; border-radius:12px; overflow:hidden; background:#ffffff22; display:inline-block; box-shadow:0 6px 18px rgba(3,64,120,0.06); border:1px solid rgba(0,102,153,0.06)}
+    .service-image img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
+    .service-text{flex:1 1 calc(100% - 240px); min-width:220px}
+    .service-title{font-size:20px;font-weight:800;margin:0 0 8px 0;color:#021826}
+    .service-desc{margin:0 0 8px 0;line-height:1.6;color:#071827;font-size:15px}
+    .service-points { margin:6px 0 0 18px; color:#072f3f; font-size:14px; }
+    /* ---------- Services area ---------- */
+    #services { margin-top:6px; overflow:visible; }
+    #services .section-title { font-size:20px; color:#042a3a; font-weight:800; margin-bottom:10px; text-align:left; }
+
+    .service-list { display:flex; flex-direction:column; gap:14px; }
+
+    .service-item {
+      display:flex; align-items:center; gap:18px;
+      padding:16px; border-radius:12px; background: rgba(255,255,255,0.06);
+      border:1px solid rgba(0,102,153,0.06);
+      box-shadow: 0 10px 30px rgba(14,122,255,0.06);
+      transition:transform .28s, box-shadow .28s;
+      flex-wrap:wrap;
+    }
+    .service-item:hover{ transform:translateY(-4px); box-shadow: 0 18px 40px rgba(14,122,255,0.10); }
+    .service-item.reverse{flex-direction:row-reverse;}
+    </style>
+</head>
+<body>
+    <!-- Services -->
+    <section id="services" aria-labelledby="services-heading" style="flex:1 1 auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <h3 id="services-heading" class="section-title">Our Services</h3>
+        <div style="font-size:13px;color:#042a3a;font-weight:700">Comprehensive • Reliable • Local Support</div>
+      </div>
+
+      <div class="service-list" role="list">
+
+        <!-- 1. Computer / Laptop Maintenance (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc1-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/J0M9w4g3/maintainense.jpg" alt="Computer / Laptop Maintenance">
+          </div>
+          <div class="service-text" id="svc1-title">
+            <h4 class="service-title">Computer / Laptop Maintenance</h4>
+            <p class="service-desc">
+              Rapid diagnostics and repair for desktops and laptops — hardware troubleshooting, OS repair, driver updates and performance tuning.
+              We restore systems while preserving data integrity and provide recommendations to avoid repeated failures.
+            </p>
+            <ul class="service-points">
+              <li>Full hardware health-check (storage, memory, cooling) and component replacement quotes.</li>
+              <li>OS cleanup, driver rollbacks, and secure virus/malware removal with follow-up checks.</li>
+              <li>Advice on upgrades to extend lifecycle and improve performance (SSD, RAM, thermal paste).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Server Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc2-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/GhsSMD95/server-maintain.jpg" alt="Server Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc2-title">
+            <h4 class="service-title">Server Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Design, deploy and maintain physical and virtual server environments. We handle OS installation, RAID configuration, monitoring and backup integration.
+              Focus is on uptime, security patches and predictable maintenance windows for minimal disruption.
+            </p>
+            <ul class="service-points">
+              <li>Virtualization setup (VMWare, Hyper-V) and container guidance for efficient utilization.</li>
+              <li>Patch management, monitoring dashboards and automated alerting to prevent outages.</li>
+              <li>Backup strategy (onsite/offsite) including restore drills and RTO/RPO recommendations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Printer Servicing & Repair (Image Left) -->
+        <div class="service-item" role="listitem" aria-labelledby="svc3-title">
+          <div class="service-image img-left">
+            <img src="https://i.postimg.cc/6pqQ5m3C/printer-service.jpg" alt="Printer Servicing & Repair">
+          </div>
+          <div class="service-text" id="svc3-title">
+            <h4 class="service-title">Printer Servicing &amp; Repair</h4>
+            <p class="service-desc">
+              On-site servicing for inkjet and laser printers: jam resolution, print-head cleaning, alignment and mechanical repairs.
+              We also support multi-function devices and print-server integration for office environments.
+            </p>
+            <ul class="service-points">
+              <li>Consumables supply, scheduled preventive servicing and replacement planning.</li>
+              <li>Network printer setup, shared printing and access control for departments.</li>
+              <li>Service contracts with priority response for high-dependency printers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. CCTV Installation & Maintenance (Image Right) -->
+        <div class="service-item reverse" role="listitem" aria-labelledby="svc4-title">
+          <div class="service-image img-right">
+            <img src="https://i.postimg.cc/NjWZx4g4/cctv.jpg" alt="CCTV Installation & Maintenance">
+          </div>
+          <div class="service-text" id="svc4-title">
+            <h4 class="service-title">CCTV Installation &amp; Maintenance</h4>
+            <p class="service-desc">
+              Professional camera placement, wiring, NVR/DVR setup and remote-view configuration. We design systems for clear coverage and reliable recording.
+              Our team ensures secure remote access and proper retention policies aligned with your needs.
+            </p>
+            <ul class="service-points">
+              <li>Site survey, camera selection (PoE/IP/analog) and optimal placement for maximum visibility.</li>
+              <li>Network configuration, secure remote access and cloud backup options.</li>
+              <li>Regular firmware updates, health checks and storage management to avoid data loss.</li>
+            </ul>
+          </div>
+        </div>
+
+</body>
+</html>

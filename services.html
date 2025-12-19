@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaieTrix Solution Pvt. Ltd. - Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* ===== LIGHT PREMIUM GRADIENT (MATCHES PACKAGES PAGE) ===== */
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #c2f7f8, #fff7f7, #b8faed);
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+            margin: 0;
+        }
+
+        .navbar { background-color: #001f3f; }
+        .navbar-brand, .navbar .nav-link { color: white !important; }
+        .navbar-brand { font-weight: bold; }
+
+        .section { padding: 60px 0; }
+
+        /* ===== PURE WHITE BOX + 1PX BORDER + SOFT SHADOW ===== */
+        .card {
+            background: #ffffff !important; /* <-- FIXED: pure white, NOT tinted */
+            border: 1px solid #000000;
+            border-radius: 14px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+            transition:
+                transform 220ms cubic-bezier(.2,.9,.2,1),
+                box-shadow 220ms ease,
+                border-color 220ms ease,
+                background-color 220ms ease;
+            transform-origin: center;
+        }
+
+        .card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+            background-color: #ffffff !important; /* stays white even on hover */
+            border-color: rgba(13,110,253,0.25);
+        }
+
+        footer {
+            background-color: #001f3f;
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* ===== Underline animation (unchanged) ===== */
+        .card .card-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+        .card .card-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd54a, #60a5fa);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 260ms cubic-bezier(.2,.9,.2,1);
+            border-radius: 2px;
+        }
+        .card:hover .card-title::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== Icon Hover Effect (unchanged) ===== */
+        .card .display-4 {
+            transition: transform 220ms ease, color 220ms ease;
+        }
+        .card:hover .display-4 {
+            transform: translateY(-6px) scale(1.05);
+            color: #ffd700 !important;
+            text-shadow: 0 4px 10px rgba(13,110,253,0.08);
+        }
+
+        /* Card body lift */
+        .card .card-body { transition: transform 220ms ease; }
+        .card:hover .card-body { transform: translateY(-4px); }
+
+        .card a { transition: transform 160ms ease, box-shadow 160ms ease; }
+        .card:hover a { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(3,10,30,0.06); }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .card:hover { transform: none; }
+            .card .card-title::after { display: none; }
+        }
+
+        .text-primary { color: #ffd700 !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-cpu"></i> SaieTrix Solution Pvt. Ltd.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Services</h2>
+            <p class="text-center mb-5">We provide comprehensive IT solutions tailored to your business needs, from repairs to installations and beyond.</p>
+            <div class="row">
+                
+                <!-- All your service boxes stay the same -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-laptop display-4 text-primary"></i><br>
+                            <h5 class="card-title">Computer & Laptop Repair</h5>
+                            <p class="card-text">Expert repair and maintenance for desktops and laptops, ensuring optimal performance and longevity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-server display-4 text-primary"></i><br>
+                            <h5 class="card-title">Server Repair & Maintenance</h5>
+                            <p class="card-text">Reliable server upkeep, diagnostics, and repairs to prevent downtime and ensure data security.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-printer display-4 text-primary"></i><br>
+                            <h5 class="card-title">Printer Installation & Maintenance</h5>
+                            <p class="card-text">Setup, configuration, and ongoing maintenance for all printer models, including troubleshooting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-camera-video display-4 text-primary"></i><br>
+                            <h5 class="card-title">CCTV Installation Services</h5>
+                            <p class="card-text">Professional CCTV setup, camera installation, and system integration for enhanced security.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-wifi display-4 text-primary"></i><br>
+                            <h5 class="card-title">Network Setup & Troubleshooting</h5>
+                            <p class="card-text">Complete network installation, configuration, and rapid troubleshooting for seamless connectivity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-fingerprint display-4 text-primary"></i><br>
+                            <h5 class="card-title">Biometric Time-Attendance Installation</h5>
+                            <p class="card-text">Install and maintain biometric systems for accurate, secure attendance tracking and reporting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-tools display-4 text-primary"></i><br>
+                            <h5 class="card-title">On-site Technical Support</h5>
+                            <p class="card-text">Immediate on-site assistance for hardware issues, software problems, and system optimizations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-cart display-4 text-primary"></i><br>
+                            <h5 class="card-title">IT Hardware Sales & Supply</h5>
+                            <p class="card-text">Wide range of hardware from top brands like HP, Dell, and Lenovo, available nationwide.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-hdd display-4 text-primary"></i><br>
+                            <h5 class="card-title">Data Recovery Services</h5>
+                            <p class="card-text">Expert data recovery from damaged drives, corrupted files, and lost data, with secure handling.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🔥 NEW SERVICES BLOGS (LOGO + TEXT) -->
+                <div class="row mt-4">
+
+                    <!-- AMC -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-shield-check display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">AMC (Annual Maintenance Contract)</h5>
+                                <p class="card-text">Comprehensive yearly maintenance for computers, laptops, networks, and office IT setups.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Laptop Sale -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-laptop display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">New Laptop Sale</h5>
+                                <p class="card-text">Brand new laptops from top manufacturers with warranty and expert assistance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refurbished Laptop Sale -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-recycle display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Refurbished Laptop Sale</h5>
+                                <p class="card-text">High-quality refurbished laptops at affordable prices, fully tested and certified.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Laptop Repairing -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-tools display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Laptop Repairing</h5>
+                                <p class="card-text">Complete repairing services for all laptop brands including hardware and software issues.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Laptop on Rent -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-box-seam display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Laptop on Rent</h5>
+                                <p class="card-text">Short and long-term laptop rental services for businesses, events, and students.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Laptop all parts -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-cpu display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Laptop Parts Available</h5>
+                                <p class="card-text">All laptop components including display, keyboard, RAM, SSD, battery, and motherboards.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New & Refurbished Desktop Sale -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-pc-display display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">New & Refurbished Desktop Sale</h5>
+                                <p class="card-text">Wide range of desktops for office, gaming, and home use available in new and refurbished condition.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop on Rent -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-pc-display-horizontal display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Desktop on Rent</h5>
+                                <p class="card-text">Cost-effective desktop rental solutions for companies, events, and training centers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Printer Sales -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-printer display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">New & Refurbished Printer Sale</h5>
+                                <p class="card-text">Printers of all types—inkjet, laser, thermal—available in both new and refurbished condition.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Printer Repair -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-wrench display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Printer Repairing</h5>
+                                <p class="card-text">Fast and affordable repair services for all printer brands and models.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Printer Parts -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-gear display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Printer Parts Available</h5>
+                                <p class="card-text">Full stock of printer components including toners, cartridges, rollers, and internal parts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Networking Work -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-wifi display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Networking Work</h5>
+                                <p class="card-text">Complete LAN, WAN, WiFi setup, router configuration, and network troubleshooting.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Server Work -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-hdd-network display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Servers Work</h5>
+                                <p class="card-text">Server setup, maintenance, data security, and performance optimization services.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Services -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-cloud-check display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">Cloud Services</h5>
+                                <p class="card-text">Cloud migration, storage solutions, backups, and secure access management.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPS for Sale -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-battery-charging display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">UPS for Sale</h5>
+                                <p class="card-text">High-quality UPS systems ensuring uninterrupted power supply for all IT equipment.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CCTV Camera Work -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-camera-video display-4 text-primary"></i><br>
+                                <h5 class="card-title mt-2">CCTV Camera Work</h5>
+                                <p class="card-text">Complete CCTV installation, maintenance, DVR setup, and remote monitoring solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2023 SaieTrix Solution Pvt. Ltd. All rights reserved.</p>
+            <p>
+                Services: 
+                <a href="services.html" class="text-white">Computer Repair</a> |
+                <a href="services.html" class="text-white">Network Setup</a> |
+                <a href="services.html" class="text-white">CCTV Installation</a>
+            </p>
+            <p>Contact: info@saietrix.com | +91-1234567890</p>
+        </div>
+    </footer>
+
+</body>
+</html>
